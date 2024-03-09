@@ -165,8 +165,6 @@ modules:
           version-query: map(select(.prerelease == false)) | sort_by(.name) | last | .name
           url-query: '["https://services.gradle.org/distributions/gradle-" + $version
             + "-bin.zip"][0]'
-          versions:
-            - >: 7
     build-commands:
       - unzip -q gradle-bin.zip -d $FLATPAK_DEST
       - mv $FLATPAK_DEST/gradle-* $FLATPAK_DEST/gradle
