@@ -162,7 +162,7 @@ modules:
         x-checker-data:
           type: json
           url: https://api.github.com/repos/gradle/gradle/releases
-          version-query: map(select(.prerelease == false)) | first | .name
+          version-query: map(select(.prerelease == false)) | sort_by(.name) | last | .name
           url-query: '["https://services.gradle.org/distributions/gradle-" + $version
             + "-bin.zip"][0]'
           versions:
