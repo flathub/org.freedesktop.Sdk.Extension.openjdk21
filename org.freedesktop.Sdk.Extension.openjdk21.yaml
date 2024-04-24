@@ -156,13 +156,14 @@ modules:
       - '*.bat'
     sources:
       - type: file
-        url: https://services.gradle.org/distributions/gradle-8.6-bin.zip
+        url: https://services.gradle.org/distributions/gradle-8.7-bin.zip
         dest-filename: gradle-bin.zip
-        sha512: 2429119280b2abf650f149d06d193893bb5a859fd2440355263ff143b43af232b3832253257d26c66f3f0abefb9d8e6af7074408e6eede577a6a387dddfdf402
+        sha512: ddbd320de140634087904c0d0047b146b9697eb0d054a7eada24d6179b65dbeb2189e1c9def463e4788fa1a7f02a720ab9b7bdcdd9bb529770985283d0e51e1a
         x-checker-data:
           type: json
           url: https://api.github.com/repos/gradle/gradle/releases
-          version-query: map(select(.prerelease == false)) | sort_by(.name) | last | .name
+          version-query: map(select(.prerelease == false)) | sort_by(.name) | last
+            | .name
           url-query: '["https://services.gradle.org/distributions/gradle-" + $version
             + "-bin.zip"][0]'
     build-commands:
