@@ -98,8 +98,6 @@ modules:
           versions:
             - ==: 21
           is-main-source: true
-      - type: patch
-        path: 0001-Avoid-requiring-pcsc-development-files-at-runtime.patch
       - type: shell
         commands:
           - chmod a+x configure
