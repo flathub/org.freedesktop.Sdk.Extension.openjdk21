@@ -37,9 +37,9 @@ modules:
       - type: file
         only-arches:
           - aarch64
-        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.5%2B11/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.5_11.tar.gz
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.6_7.tar.gz
         dest-filename: java-openjdk.tar.bz2
-        sha512: 93a6d3c39c71bbec8a0b5d5501bbd9f2b44efcb7fb21a8c0e65fd15640f9b1b4b366be7298eb18eff3010ff41290f0a59544fee4efe16a8192cfe47394999485
+        sha512: 726936fad5d020cc41f55a9471171e46e4aa0d8f9418efea0832360850ce554bdaf5fec53e5f25f67f54db5d4b7e4fc603c70d8ffbde0ddbf39dc759bf807fb0
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=aarch64&image_type=jdk
