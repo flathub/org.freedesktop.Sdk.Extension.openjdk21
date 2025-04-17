@@ -24,9 +24,9 @@ modules:
       - type: file
         only-arches:
           - x86_64
-        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.7%2B6/OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz
         dest-filename: java-openjdk.tar.bz2
-        sha512: fe1429daa45a8a48563ffd35fbef150fd28b3c5338f189785d6df511e34b04cba8e4fd573ce50e0fa8b5c07896ff1c4c60c18fe6b5d9f163d8af91ad50f2a07a
+        sha512: 97295fb4db5ef86a143db50b8bc8fc5c95b8e7a3803c8e8bc8403be283fc00b132654e9305a32d17f2cc40112f6284b0931ce11763c853606c1f0b70674b9813
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=x64&image_type=jdk
@@ -37,9 +37,9 @@ modules:
       - type: file
         only-arches:
           - aarch64
-        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.6_7.tar.gz
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.7%2B6/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.7_6.tar.gz
         dest-filename: java-openjdk.tar.bz2
-        sha512: 726936fad5d020cc41f55a9471171e46e4aa0d8f9418efea0832360850ce554bdaf5fec53e5f25f67f54db5d4b7e4fc603c70d8ffbde0ddbf39dc759bf807fb0
+        sha512: c4ace083c9a879a5192c20022a4fd61dcd7df6d4dff767f70b6c073f7d8cccbccb1f1cc63de7be60a228af53601f77d1d19a4073e70a377134fad393c6a30d41
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=aarch64&image_type=jdk
@@ -87,8 +87,8 @@ modules:
       - (cd $FLATPAK_DEST/jvm && ln -s openjdk-21.* openjdk-21)
     sources:
       - type: archive
-        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.6+7.tar.gz
-        sha512: 9b2b3ac9572bb1e523611dcb00db8a610721944f2cb715035a4f6ac2eff197488591a3af420b25cb4614cad80a4e7885b14919f54a32bb58864fcb3d9f37b3a8
+        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.7+6.tar.gz
+        sha512: e9fdb49da04d9434b455fc72bfe459fc1251a250673e65ab8d3c5ef2f8925839b7b87529db937c01afa8a814d86874c5b65dcc7382e5ca32c293c97282239ab5
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=x64&image_type=jdk
