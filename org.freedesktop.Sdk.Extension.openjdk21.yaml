@@ -36,9 +36,9 @@ modules:
       - type: file
         only-arches:
           - aarch64
-        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.7%2B6/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.7_6.tar.gz
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%2B9/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.8_9.tar.gz
         dest-filename: java-openjdk.tar.bz2
-        sha512: c4ace083c9a879a5192c20022a4fd61dcd7df6d4dff767f70b6c073f7d8cccbccb1f1cc63de7be60a228af53601f77d1d19a4073e70a377134fad393c6a30d41
+        sha512: 4bc38655b7e1fa639776449843af2d84cbaea9067635925e247ebd9dd958fb24cd2d6b59121ad86a2e65c293f46dc5ead0b0c0b916268e4618805c2e25aa5351
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=aarch64&image_type=jdk
@@ -137,9 +137,9 @@ modules:
       - '*.cmd'
     sources:
       - type: file
-        url: http://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
+        url: http://archive.apache.org/dist/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.tar.gz
         dest-filename: apache-maven-bin.tar.gz
-        sha512: a555254d6b53d267965a3404ecb14e53c3827c09c3b94b5678835887ab404556bfaf78dcfe03ba76fa2508649dca8531c74bca4d5846513522404d48e8c4ac8b
+        sha512: bcfe4fe305c962ace56ac7b5fc7a08b87d5abd8b7e89027ab251069faebee516b0ded8961445d6d91ec1985dfe30f8153268843c89aa392733d1a3ec956c9978
         x-checker-data:
           type: anitya
           project-id: 1894
