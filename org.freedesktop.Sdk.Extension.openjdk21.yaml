@@ -23,9 +23,9 @@ modules:
       - type: file
         only-arches:
           - x86_64
-        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%2B9/OpenJDK21U-jdk_x64_linux_hotspot_21.0.8_9.tar.gz
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.9%2B10/OpenJDK21U-jdk_x64_linux_hotspot_21.0.9_10.tar.gz
         dest-filename: java-openjdk.tar.bz2
-        sha512: f5904c0ec0b927e35bc35d55bc67ad70cbb0b22566f367f2db519ad6867a8185e819cb0aea35c97741f7df2a10788a8f5aca10cd2c799423d0d561c915812556
+        sha512: 5209bc15c2c21372b32b8ed55f03aef91e400d151dcfdfab83d63569c12b13aeee7b9c1678c960797d47962396ca566ebed791f55fcef4f27a9450c0db0b4035
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=x64&image_type=jdk
@@ -36,9 +36,9 @@ modules:
       - type: file
         only-arches:
           - aarch64
-        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%2B9/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.8_9.tar.gz
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.9%2B10/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.9_10.tar.gz
         dest-filename: java-openjdk.tar.bz2
-        sha512: 4bc38655b7e1fa639776449843af2d84cbaea9067635925e247ebd9dd958fb24cd2d6b59121ad86a2e65c293f46dc5ead0b0c0b916268e4618805c2e25aa5351
+        sha512: f0eec66822af2060c541ca7ebe6d3e0ad532a4937096df0a746d74ff2c4c94a4171fdfaee12b40f42a633f1bf87c9f353dfcbec91a3a34f17ded3c98bc1f3de8
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=aarch64&image_type=jdk
@@ -85,8 +85,8 @@ modules:
       - ln -sr $FLATPAK_DEST/jvm/openjdk-21/bin/* $FLATPAK_DEST/bin
     sources:
       - type: archive
-        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.8+9.tar.gz
-        sha512: e4f4694319903b4f64775dcccae02167315017b81fbbe1ea91b887fb101501118e69e2662ed5c6a913150e3838aa29d897326946bacf833a4888d974dba931d1
+        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.9+10.tar.gz
+        sha512: 7f6447ca6f265da4c04a650bc6af1763f4c9e17021120df2e30ef2f159739a7aea822c8d504bda1bcd3016180deda30ad280dca7f66117e3cdcc82abcefb123f
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=x64&image_type=jdk
@@ -155,9 +155,9 @@ modules:
       - '*.bat'
     sources:
       - type: file
-        url: https://services.gradle.org/distributions/gradle-8.9-bin.zip
+        url: https://services.gradle.org/distributions/gradle-9.2.0-bin.zip
         dest-filename: gradle-bin.zip
-        sha512: 2b518f56b472ca505de7c4c315711bc7837a15cb343edd3e6479777a7d2a93e1a807f339c3b2f121c9be9e5d19bc39e793b322b2f536ed52c67587598eeb653e
+        sha512: 06c191dca9f3b4f8f38285755d86b0ab4665728f268b62421614394ccd9a0aa1377e95965bf5fb98f885a770bb60bb7465cdb3ba088780d999b27eb1598fa610
         x-checker-data:
           type: json
           url: https://api.github.com/repos/gradle/gradle/releases
