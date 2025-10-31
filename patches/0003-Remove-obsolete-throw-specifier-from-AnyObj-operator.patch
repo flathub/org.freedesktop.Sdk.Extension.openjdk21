@@ -1,0 +1,44 @@
+From 3a6bdbb7772f85e1bbb13067e48a11ad0ee4fc48 Mon Sep 17 00:00:00 2001
+From: guihkx <626206+guihkx@users.noreply.github.com>
+Date: Fri, 31 Oct 2025 01:26:48 -0300
+Subject: [PATCH] Remove obsolete throw() specifier from AnyObj::operator new
+ definition
+
+Building with -fexceptions fails due to a mismatched exception specifier
+between the declaration and definition of AnyObj::operator new(size_t, Arena*):
+
+=== Output from failing command(s) repeated here ===
+* For target hotspot_variant-server_libjvm_objs_allocation.o:
+/run/build/java/src/hotspot/share/memory/allocation.cpp:114:7: error: declaration of 'static void* AnyObj::operator new(size_t, Arena*) throw ()' has a different exception specifier
+  114 | void* AnyObj::operator new(size_t size, Arena *arena) throw() {
+      |       ^~~~~~
+In file included from /run/build/java/src/hotspot/share/classfile/classLoaderData.hpp:28,
+                 from /run/build/java/src/hotspot/share/precompiled/precompiled.hpp:34:
+/run/build/java/src/hotspot/share/memory/allocation.hpp:504:9: note: from previous declaration 'static void* AnyObj::operator new(size_t, Arena*)'
+  504 |   void* operator new(size_t size, Arena *arena);
+      |         ^~~~~~~~
+
+* All command lines available in /run/build/java/build/linux-x86_64-server-release/make-support/failure-logs.
+=== End of repeated output ===
+
+This is a shorter backport of: https://github.com/openjdk/jdk21u-dev/commit/545ab3fdf6582c6237b173d158d229825f2b68c9
+---
+ src/hotspot/share/memory/allocation.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/hotspot/share/memory/allocation.cpp b/src/hotspot/share/memory/allocation.cpp
+index 64b00a136..120d0df53 100644
+--- a/src/hotspot/share/memory/allocation.cpp
++++ b/src/hotspot/share/memory/allocation.cpp
+@@ -111,7 +111,7 @@ void* ArenaObj::operator new(size_t size, Arena *arena) throw() {
+ // AnyObj
+ //
+ 
+-void* AnyObj::operator new(size_t size, Arena *arena) throw() {
++void* AnyObj::operator new(size_t size, Arena *arena) {
+   address res = (address)arena->Amalloc(size);
+   DEBUG_ONLY(set_allocation_type(res, ARENA);)
+   return res;
+-- 
+2.51.2
+

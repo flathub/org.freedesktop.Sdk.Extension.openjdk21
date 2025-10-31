@@ -1,0 +1,50 @@
+From ef55aaf4b4ac33e56ae12964de037c17a19df459 Mon Sep 17 00:00:00 2001
+From: guihkx <626206+guihkx@users.noreply.github.com>
+Date: Sat, 1 Nov 2025 17:24:28 -0300
+Subject: [PATCH] Fix missing inline includes for XList and ZList destructors
+
+This fixes linking when building OpenJDK with -fexceptions (one of the
+CFLAGS inherited from the Freedesktop SDK):
+
+=== Output from failing command(s) repeated here ===
+* For target hotspot_variant-server_libjvm_objs_BUILD_LIBJVM_link:
+/usr/lib/gcc/x86_64-unknown-linux-gnu/15.2.0/../../../../x86_64-unknown-linux-gnu/bin/ld: /run/build/java/build/linux-x86_64-server-release/hotspot/variant-server/libjvm/objs/xPhysicalMemory.o: in function `XList<XMemory>::~XList()':
+make/hotspot/src/hotspot/share/gc/x/xList.hpp:54:(.text.unlikely+0x5): undefined reference to `XListNode<XMemory>::~XListNode()'
+/usr/lib/gcc/x86_64-unknown-linux-gnu/15.2.0/../../../../x86_64-unknown-linux-gnu/bin/ld: /run/build/java/build/linux-x86_64-server-release/hotspot/variant-server/libjvm/objs/zPhysicalMemory.o: in function `ZList<ZMemory>::~ZList()':
+make/hotspot/src/hotspot/share/gc/z/zList.hpp:54:(.text.unlikely+0x5): undefined reference to `ZListNode<ZMemory>::~ZListNode()'
+collect2: error: ld returned 1 exit status
+
+* All command lines available in /run/build/java/build/linux-x86_64-server-release/make-support/failure-logs.
+=== End of repeated output ===
+---
+ src/hotspot/share/gc/x/xPhysicalMemory.cpp | 1 +
+ src/hotspot/share/gc/z/zPhysicalMemory.cpp | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/src/hotspot/share/gc/x/xPhysicalMemory.cpp b/src/hotspot/share/gc/x/xPhysicalMemory.cpp
+index 20902cc05..908d7b6ff 100644
+--- a/src/hotspot/share/gc/x/xPhysicalMemory.cpp
++++ b/src/hotspot/share/gc/x/xPhysicalMemory.cpp
+@@ -27,6 +27,7 @@
+ #include "gc/x/xArray.inline.hpp"
+ #include "gc/x/xGlobals.hpp"
+ #include "gc/x/xLargePages.inline.hpp"
++#include "gc/x/xList.inline.hpp"
+ #include "gc/x/xNUMA.inline.hpp"
+ #include "gc/x/xPhysicalMemory.inline.hpp"
+ #include "logging/log.hpp"
+diff --git a/src/hotspot/share/gc/z/zPhysicalMemory.cpp b/src/hotspot/share/gc/z/zPhysicalMemory.cpp
+index 924bc7291..099adbfb9 100644
+--- a/src/hotspot/share/gc/z/zPhysicalMemory.cpp
++++ b/src/hotspot/share/gc/z/zPhysicalMemory.cpp
+@@ -27,6 +27,7 @@
+ #include "gc/z/zArray.inline.hpp"
+ #include "gc/z/zGlobals.hpp"
+ #include "gc/z/zLargePages.inline.hpp"
++#include "gc/z/zList.inline.hpp"
+ #include "gc/z/zNMT.hpp"
+ #include "gc/z/zNUMA.inline.hpp"
+ #include "gc/z/zPhysicalMemory.inline.hpp"
+-- 
+2.51.2
+

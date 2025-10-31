@@ -1,0 +1,57 @@
+From 68cfb53cc8baeb79161ac6d7b0137d9a309aa0d0 Mon Sep 17 00:00:00 2001
+From: guihkx <626206+guihkx@users.noreply.github.com>
+Date: Sat, 1 Nov 2025 17:24:42 -0300
+Subject: [PATCH] FORBID_C_FUNCTION needs exception spec consistent with
+ library declaration
+
+Fixes build failures when building with -fexceptions:
+
+=== Output from failing command(s) repeated here ===
+* For target hotspot_variant-server_libjvm_objs_mallocInfoDcmd.o:
+In file included from /run/build/java/src/hotspot/os/linux/mallocInfoDcmd.cpp:31:
+/usr/include/malloc.h:39:14: error: declaration of 'void* malloc(size_t) noexcept' has a different exception specifier
+   39 | extern void *malloc (size_t __size) __THROW __attribute_malloc__
+      |              ^~~~~~
+In file included from /run/build/java/src/hotspot/share/utilities/compilerWarnings.hpp:32,
+                 from /run/build/java/src/hotspot/share/utilities/debug.hpp:30,
+                 from /run/build/java/src/hotspot/share/memory/allocation.hpp:29,
+                 from /run/build/java/src/hotspot/share/classfile/classLoaderData.hpp:28,
+                 from /run/build/java/src/hotspot/share/precompiled/precompiled.hpp:34:
+/run/build/java/src/hotspot/share/utilities/globalDefinitions.hpp:205:25: note: from previous declaration 'void* malloc(size_t)'
+  205 | FORBID_C_FUNCTION(void* malloc(size_t size), "use os::malloc");
+      |                         ^~~~~~
+/run/build/java/src/hotspot/share/utilities/compilerWarnings_gcc.hpp:86:56: note: in definition of macro 'FORBID_C_FUNCTION'
+   86 |   extern "C" __attribute__((__warning__(alternative))) signature;
+      |                                                        ^~~~~~~~~
+   ... (rest of output omitted)
+
+* All command lines available in /run/build/java/build/linux-x86_64-server-release/make-support/failure-logs.
+=== End of repeated output ===
+
+This is a _very_ simplified backport of: https://github.com/openjdk/jdk/commit/4e59c63ec5a896a09f61a019e2fc5a2ec75ec40e
+---
+ src/hotspot/share/utilities/globalDefinitions.hpp | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/hotspot/share/utilities/globalDefinitions.hpp b/src/hotspot/share/utilities/globalDefinitions.hpp
+index 625fdcc41..d121ee3db 100644
+--- a/src/hotspot/share/utilities/globalDefinitions.hpp
++++ b/src/hotspot/share/utilities/globalDefinitions.hpp
+@@ -202,10 +202,10 @@ FORBID_C_FUNCTION(int vsnprintf(char*, size_t, const char*, va_list), "use os::v
+ 
+ // All of the following functions return raw C-heap pointers (sometimes as an option, e.g. realpath or getwd)
+ // or, in case of free(), take raw C-heap pointers. Don't use them unless you are really sure you must.
+-FORBID_C_FUNCTION(void* malloc(size_t size), "use os::malloc");
+-FORBID_C_FUNCTION(void* calloc(size_t nmemb, size_t size), "use os::malloc and zero out manually");
+-FORBID_C_FUNCTION(void free(void *ptr), "use os::free");
+-FORBID_C_FUNCTION(void* realloc(void *ptr, size_t size), "use os::realloc");
++FORBID_C_FUNCTION(void* malloc(size_t size) noexcept, "use os::malloc");
++FORBID_C_FUNCTION(void* calloc(size_t nmemb, size_t size) noexcept, "use os::malloc and zero out manually");
++FORBID_C_FUNCTION(void free(void *ptr) noexcept, "use os::free");
++FORBID_C_FUNCTION(void* realloc(void *ptr, size_t size) noexcept, "use os::realloc");
+ FORBID_C_FUNCTION(char* strdup(const char *s), "use os::strdup");
+ FORBID_C_FUNCTION(char* strndup(const char *s, size_t n), "don't use");
+ FORBID_C_FUNCTION(int posix_memalign(void **memptr, size_t alignment, size_t size), "don't use");
+-- 
+2.51.2
+

@@ -51,40 +51,35 @@ modules:
       - tar xf java-openjdk.tar.bz2 --strip-components=1 --directory=$FLATPAK_DEST/bootstrap-java
 
   - name: java
-    buildsystem: autotools
-    no-parallel-make: true
-    no-make-install: true
-    config-opts:
-      - --with-boot-jdk=/usr/lib/sdk/openjdk21/bootstrap-java
-      - --with-jvm-variants=server
-      - --with-version-build=2
-      - --with-version-pre=
-      - --with-version-opt=
-      - --with-vendor-version-string=21.9
-      - --with-vendor-name=Flathub
-      - --with-vendor-url=https://flathub.org
-      - --with-vendor-bug-url=https://github.com/flathub/org.freedesktop.Sdk.Extension.openjdk21/issues
-      - --with-debug-level=release
-      - --with-native-debug-symbols=internal
-      - --enable-unlimited-crypto
-      - --with-zlib=system
-      - --with-libjpeg=system
-      - --with-giflib=system
-      - --with-libpng=system
-      - --with-lcms=system
-      - --with-harfbuzz=system
-      - --with-stdc++lib=dynamic
-      - --with-extra-cxxflags=-grecord-gcc-switches -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS
-        -fstack-protector-strong -fasynchronous-unwind-tables -fstack-clash-protection
-      - --with-extra-cflags=-grecord-gcc-switches -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS
-        -fstack-protector-strong -fasynchronous-unwind-tables -fstack-clash-protection
-      - --with-extra-ldflags=-Wl,-z,relro -Wl,-z,now -Wl,--as-needed
-      - --disable-javac-server
-      - --disable-warnings-as-errors
-    make-args:
-      - LOG=info
-      - images
-    post-install:
+    buildsystem: simple
+    build-commands:
+      - |
+        bash configure \
+           --with-boot-jdk=/usr/lib/sdk/openjdk21/bootstrap-java \
+           --with-jvm-variants=server \
+           --with-version-pre= \
+           --with-version-opt= \
+           --with-vendor-version-string=25.08 \
+           --with-vendor-name=Flathub \
+           --with-vendor-url=https://flathub.org \
+           --with-vendor-bug-url=https://github.com/flathub/org.freedesktop.Sdk.Extension.openjdk21/issues \
+           --with-vendor-vm-bug-url=https://github.com/flathub/org.freedesktop.Sdk.Extension.openjdk21/issues \
+           --with-debug-level=release \
+           --with-native-debug-symbols=internal \
+           --enable-unlimited-crypto \
+           --with-zlib=system \
+           --with-libjpeg=system \
+           --with-giflib=system \
+           --with-libpng=system \
+           --with-lcms=system \
+           --with-harfbuzz=system \
+           --with-stdc++lib=dynamic \
+           --with-extra-cflags="${CFLAGS}" \
+           --with-extra-cxxflags="${CXXFLAGS}" \
+           --with-extra-ldflags="${LDFLAGS}" \
+           --disable-javac-server \
+           --disable-warnings-as-errors
+      - make -j1 LOG=info images
       - mkdir -p $FLATPAK_DEST/jvm $FLATPAK_DEST/bin
       - cp -Lr build/linux-*-server-release/images/jdk $FLATPAK_DEST/jvm/openjdk-21
       - ln -sr $FLATPAK_DEST/jvm/openjdk-21/bin/* $FLATPAK_DEST/bin
@@ -101,14 +96,13 @@ modules:
           versions:
             - ==: 21
           is-main-source: true
-      - type: shell
-        commands:
-          - chmod a+x configure
-          - sed -i -e "s|@prefix@|$FLATPAK_DEST|" make/autoconf/spec.gmk.in
       - type: patch
         paths:
           - patches/0001-Allow-ccache-to-be-handled-by-GCC-wrappers.patch
           - patches/0002-Build-failure-with-glibc-2.42-due-to-uabs-name.patch
+          - patches/0003-Remove-obsolete-throw-specifier-from-AnyObj-operator.patch
+          - patches/0004-FORBID_C_FUNCTION-needs-exception-spec-consistent-wi.patch
+          - patches/0005-Fix-missing-inline-includes-for-XList-and-ZList-dest.patch
 
   - name: cacerts
     buildsystem: simple
