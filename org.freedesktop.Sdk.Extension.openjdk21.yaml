@@ -49,9 +49,11 @@ modules:
     build-commands:
       - mkdir -p $FLATPAK_DEST/bootstrap-java
       - tar xf java-openjdk.tar.bz2 --strip-components=1 --directory=$FLATPAK_DEST/bootstrap-java
+
   - name: java
     buildsystem: autotools
     no-parallel-make: true
+    no-make-install: true
     config-opts:
       - --with-boot-jdk=/usr/lib/sdk/openjdk21/bootstrap-java
       - --with-jvm-variants=server
@@ -83,7 +85,9 @@ modules:
       - LOG=info
       - images
     post-install:
-      - (cd $FLATPAK_DEST/jvm && ln -s openjdk-21.* openjdk-21)
+      - mkdir -p $FLATPAK_DEST/jvm $FLATPAK_DEST/bin
+      - cp -Lr build/linux-*-server-release/images/jdk $FLATPAK_DEST/jvm/openjdk-21
+      - ln -sr $FLATPAK_DEST/jvm/openjdk-21/bin/* $FLATPAK_DEST/bin
     sources:
       - type: archive
         url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.8+9.tar.gz
@@ -104,6 +108,7 @@ modules:
       - type: patch
         paths:
           - patches/0001-Allow-ccache-to-be-handled-by-GCC-wrappers.patch
+
   - name: cacerts
     buildsystem: simple
     sources:
