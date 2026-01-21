@@ -23,9 +23,9 @@ modules:
       - type: file
         only-arches:
           - x86_64
-        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.9%2B10/OpenJDK21U-jdk_x64_linux_hotspot_21.0.9_10.tar.gz
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.10%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.10_7.tar.gz
         dest-filename: java-openjdk.tar.bz2
-        sha512: 5209bc15c2c21372b32b8ed55f03aef91e400d151dcfdfab83d63569c12b13aeee7b9c1678c960797d47962396ca566ebed791f55fcef4f27a9450c0db0b4035
+        sha512: 51ee705322ebd5d54f22d8566c752f711eb18072dfffc037a8e68f0db8539505d68b65e352f6208ae2d4458d6e07ec3c06d3685247e7a4b36785306b674d8227
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=x64&image_type=jdk
@@ -85,8 +85,8 @@ modules:
       - ln -sr $FLATPAK_DEST/jvm/openjdk-21/bin/* $FLATPAK_DEST/bin
     sources:
       - type: archive
-        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.9+10.tar.gz
-        sha512: 7f6447ca6f265da4c04a650bc6af1763f4c9e17021120df2e30ef2f159739a7aea822c8d504bda1bcd3016180deda30ad280dca7f66117e3cdcc82abcefb123f
+        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.10+7.tar.gz
+        sha512: 3b74555e77bc0810a96b21f6e891d6d0b15fefefe8dc6ab317b5ba7dbf74f876b1cff430e307dee826fd53c85e99126cdbfa39ec295c9aa618d5ccd36368ef64
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=x64&image_type=jdk
@@ -136,9 +136,9 @@ modules:
       - '*.cmd'
     sources:
       - type: file
-        url: http://archive.apache.org/dist/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.tar.gz
+        url: http://archive.apache.org/dist/maven/maven-3/3.9.12/binaries/apache-maven-3.9.12-bin.tar.gz
         dest-filename: apache-maven-bin.tar.gz
-        sha512: bcfe4fe305c962ace56ac7b5fc7a08b87d5abd8b7e89027ab251069faebee516b0ded8961445d6d91ec1985dfe30f8153268843c89aa392733d1a3ec956c9978
+        sha512: 0a1be79f02466533fc1a80abbef8796e4f737c46c6574ede5658b110899942a94db634477dfd3745501c80aef9aac0d4f841d38574373f7e2d24cce89d694f70
         x-checker-data:
           type: anitya
           project-id: 1894
@@ -155,9 +155,9 @@ modules:
       - '*.bat'
     sources:
       - type: file
-        url: https://services.gradle.org/distributions/gradle-9.2.0-bin.zip
+        url: https://services.gradle.org/distributions/gradle-9.3.0-bin.zip
         dest-filename: gradle-bin.zip
-        sha512: 06c191dca9f3b4f8f38285755d86b0ab4665728f268b62421614394ccd9a0aa1377e95965bf5fb98f885a770bb60bb7465cdb3ba088780d999b27eb1598fa610
+        sha512: 6df0976acd118427d206c15716d24955e16ac80d362a6c9814764119e826580480b2d508b13e2740dfde81d13528fc46fe2c2c53b3d8b267093f09895a192a1c
         x-checker-data:
           type: json
           url: https://api.github.com/repos/gradle/gradle/releases
