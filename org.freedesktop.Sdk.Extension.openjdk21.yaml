@@ -99,7 +99,6 @@ modules:
       - type: patch
         paths:
           - patches/0001-Allow-ccache-to-be-handled-by-GCC-wrappers.patch
-          - patches/0002-Remove-obsolete-throw-specifier-from-AnyObj-operator.patch
           - patches/0003-FORBID_C_FUNCTION-needs-exception-spec-consistent-wi.patch
           - patches/0004-Fix-missing-inline-includes-for-XList-and-ZList-dest.patch
 
