@@ -71,8 +71,8 @@ modules:
       - ln -sr $FLATPAK_DEST/jvm/openjdk-21/bin/* $FLATPAK_DEST/bin
     sources:
       - type: archive
-        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.9+10.tar.gz
-        sha512: 7f6447ca6f265da4c04a650bc6af1763f4c9e17021120df2e30ef2f159739a7aea822c8d504bda1bcd3016180deda30ad280dca7f66117e3cdcc82abcefb123f
+        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.10+7.tar.gz
+        sha512: 3b74555e77bc0810a96b21f6e891d6d0b15fefefe8dc6ab317b5ba7dbf74f876b1cff430e307dee826fd53c85e99126cdbfa39ec295c9aa618d5ccd36368ef64
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=x64&image_type=jdk
@@ -85,9 +85,8 @@ modules:
       - type: patch
         paths:
           - patches/0001-Allow-ccache-to-be-handled-by-GCC-wrappers.patch
-          - patches/0002-Remove-obsolete-throw-specifier-from-AnyObj-operator.patch
-          - patches/0003-FORBID_C_FUNCTION-needs-exception-spec-consistent-wi.patch
-          - patches/0004-Fix-missing-inline-includes-for-XList-and-ZList-dest.patch
+          - patches/0002-FORBID_C_FUNCTION-needs-exception-spec-consistent-wi.patch
+          - patches/0003-Fix-missing-inline-includes-for-XList-and-ZList-dest.patch
 
   - name: cacerts
     buildsystem: simple
