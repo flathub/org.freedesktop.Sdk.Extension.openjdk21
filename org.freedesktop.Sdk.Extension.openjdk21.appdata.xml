@@ -16,8 +16,11 @@
   <developer_name>Mat Booth</developer_name>
   <update_contact>mat.booth@gmail.com</update_contact>
   <releases>
-    <release version="jdk-21.0.10+7" date="2026-01-23">
+    <release version="jdk-21.0.11+10" date="2026-04-23">
       <description></description>
+    </release>
+    <release version="jdk-21.0.10+7" date="2026-01-23">
+      <description/>
     </release>
     <release version="jdk-21.0.9+10" date="2025-10-30">
       <description/>
