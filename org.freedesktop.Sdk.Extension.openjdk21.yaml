@@ -71,8 +71,8 @@ modules:
       - ln -sr $FLATPAK_DEST/jvm/openjdk-21/bin/* $FLATPAK_DEST/bin
     sources:
       - type: archive
-        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.12+8.tar.gz
-        sha512: 59a88b7e3941d03b44baa5c4ed73e25b2060801b2e7a9eae0c4b7070775fe08a40198d96229feeab734a60a37281beee8524fbcff95d255f9e9d09ebb7e05be6
+        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.12.1+1.tar.gz
+        sha512: 4b2ca378062ceddf7974071fb64bdf1c2a3a76bd77ff597025124b4db10aa06b10b79c66a9e2f9dc930a6ec98f42ad39dcac3c92f1e6b902ab98a40930fdf530
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=x64&image_type=jdk
@@ -140,9 +140,9 @@ modules:
       - '*.bat'
     sources:
       - type: file
-        url: https://services.gradle.org/distributions/gradle-9.6.1-bin.zip
+        url: https://services.gradle.org/distributions/gradle-9.7.1-bin.zip
         dest-filename: gradle-bin.zip
-        sha512: 2a1efccc77114aa841b32ea5f79694d325c0220d4d57d26901f47d2ab41d38aec64f1a3b79a7629b6a925a1ba6c63e34a653f09ed216db2db6ccee28309b159c
+        sha512: ca3f3e76d022cec8338e3e1b30f25d95aa90c8bd1b3e8ac665492139b3307f4f5f29bfbb0d3be663b99ed6c8a3e3d6a09345df0ee5179d6f9f2eb086453ad997
         x-checker-data:
           type: json
           url: https://api.github.com/repos/gradle/gradle/releases
