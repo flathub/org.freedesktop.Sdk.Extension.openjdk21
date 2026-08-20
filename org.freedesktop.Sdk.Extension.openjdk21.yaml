@@ -71,8 +71,8 @@ modules:
       - ln -sr $FLATPAK_DEST/jvm/openjdk-21/bin/* $FLATPAK_DEST/bin
     sources:
       - type: archive
-        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.12+8.tar.gz
-        sha512: 59a88b7e3941d03b44baa5c4ed73e25b2060801b2e7a9eae0c4b7070775fe08a40198d96229feeab734a60a37281beee8524fbcff95d255f9e9d09ebb7e05be6
+        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.12.1+1.tar.gz
+        sha512: 4b2ca378062ceddf7974071fb64bdf1c2a3a76bd77ff597025124b4db10aa06b10b79c66a9e2f9dc930a6ec98f42ad39dcac3c92f1e6b902ab98a40930fdf530
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=x64&image_type=jdk
