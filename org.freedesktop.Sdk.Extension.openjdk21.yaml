@@ -71,8 +71,8 @@ modules:
       - ln -sr $FLATPAK_DEST/jvm/openjdk-21/bin/* $FLATPAK_DEST/bin
     sources:
       - type: archive
-        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.13+9.tar.gz
-        sha512: 7ab76bdee8145a0a8bb0be65b996b634528239a77388bcf6fd33a13063f7b7a8a6e35d760eb33c1df6b55923eff1534f2246f6634de056b579200abe7d546acf
+        url: https://github.com/openjdk/jdk21u/archive/refs/tags/jdk-21.0.13.1+2.tar.gz
+        sha512: d8540e5f47369cc0efda1397e0cbfd4ca79d8a895b6bef7897871844875a92f48aeecdce3b3d550e3a73fbbe60bb3cc07540880a814ae35d3b96b612ab9abb29
         x-checker-data:
           type: json
           url: https://api.adoptium.net/v3/assets/latest/21/hotspot?os=linux&architecture=x64&image_type=jdk
@@ -121,9 +121,9 @@ modules:
       - '*.cmd'
     sources:
       - type: file
-        url: http://archive.apache.org/dist/maven/maven-3/3.10.0/binaries/apache-maven-3.10.0-bin.tar.gz
+        url: http://archive.apache.org/dist/maven/maven-3/3.10.1/binaries/apache-maven-3.10.1-bin.tar.gz
         dest-filename: apache-maven-bin.tar.gz
-        sha512: 908b1501bfb420bf7c8affb855534a9c407fd6099367bfb9f2f2dcb8e9799102bffb84518cde74c679bd76870247c6528683abdd620581bffa90f95d92d175aa
+        sha512: 8af2fcc48ee6b8f8fc0b21054226e14404b88500df6483cdeb3ae603408f6de27b1397ac591a9fb0d98fee64f4f624fee1383efd25b8998786cda1598fb9ea39
         x-checker-data:
           type: anitya
           project-id: 1894
@@ -140,9 +140,9 @@ modules:
       - '*.bat'
     sources:
       - type: file
-        url: https://services.gradle.org/distributions/gradle-9.8.2-bin.zip
+        url: https://services.gradle.org/distributions/gradle-9.9.1-bin.zip
         dest-filename: gradle-bin.zip
-        sha512: 452e0bcede625910b32bf5b4dbfe137ec937bb1c31259bc3d9dce6a00abcf3a596b61cd7e4fd09f5fb624ad48463904bbb6fe5be2a4e94caccfea33b7237887e
+        sha512: 07fca29557378d0684457c16e71651bec88b1bc59c9f743df10ed689b93a86a59ea045b651b17516d5d80bf50911048ecfe0d7a1e8b07ec6184127d22690d6a5
         x-checker-data:
           type: json
           url: https://api.github.com/repos/gradle/gradle/releases
